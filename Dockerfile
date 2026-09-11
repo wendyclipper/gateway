@@ -22,7 +22,7 @@ RUN npm ci --omit=dev && \
     rm -rf /tmp/* /root/.npm/_cacache
 
 COPY --from=builder /app/dist ./dist
-
+COPY tollbooth.config.yaml ./tollbooth.config.yaml
 EXPOSE 3000
 
 ENTRYPOINT ["node", "dist/cli.js"]
