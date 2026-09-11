@@ -1,0 +1,15 @@
+wallets:
+  base: "${PAY_TO_ADDRESS}"
+
+accepts:
+  - asset: USDC
+    network: base
+
+upstreams:
+  opportunity:
+    url: "${MAKE_WEBHOOK_URL}"
+
+routes:
+  "POST /opportunities":
+    upstream: opportunity
+    price: "$0.05"
