@@ -71,10 +71,27 @@ export function createPaymentRequiredResponse(
 	requirements: PaymentRequirementsPayload[],
 	mppChallenges?: MppChallenge[],
 ): Response {
-	const body = JSON.stringify({
-		accepts: requirements.map((r) => ({ paymentRequirements: r })),
-	});
-	const encoded = encodePaymentRequired(requirements);
+	const paymentRequired = {
+  x402Version: 2,
+  resource: {
+    url: `https://gateway-production-1a96.up.railway.app${requirements[0]?.resource ?? "/"}`,
+    description: requirements[0]?.description ?? "",
+    mimeType: "application/json",
+  },
+  accepts: requirements.map((r) => ({
+    scheme: r.scheme,
+    network: r.network === "base" ? "eip155:8453" : r.network,
+    amount: r.maxAmountRequired,
+    asset: r.asset,
+    payTo: r.payTo,
+    maxTimeoutSeconds: r.maxTimeoutSeconds,
+    extra: r.extra,
+  })),
+  extensions: {},
+};
+
+const body = JSON.stringify(paymentRequired);
+const encoded = encodePaymentRequired(paymentRequired);
 
 	const headers = new Headers({
 		"Content-Type": "application/json",
