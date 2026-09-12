@@ -6,7 +6,7 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "@coinbase/cdp-sdk": "^1.55.0",
+    "@coinbase/cdp-sdk": "1.55.0",
     "@x402/core": "^2.21.0",
     "@x402/evm": "^2.21.0",
     "@x402/express": "^2.21.0",
