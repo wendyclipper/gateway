@@ -330,7 +330,7 @@ export function mergeOpenAPISpec(
 
 			op["x-x402-price"] = price;
 			op["x-x402-accepts"] = acceptsInfo;
-
+			op["x-payment-info"] = { protocols: ["x402"], pricingMode: "fixed", price: "0.05", currency: "USD" };
 			if (route) {
 				if (route.type === "token-based") {
 					op["x-x402-pricing-type"] = "token-based";
