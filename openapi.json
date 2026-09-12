@@ -1,0 +1,45 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "EU Opportunity Engine",
+    "version": "1.0.0",
+    "description": "AI-powered analysis of EU public procurement opportunities from TED data."
+  },
+  "paths": {
+    "/opportunities": {
+      "post": {
+        "summary": "Find and analyze EU procurement opportunities",
+        "operationId": "findOpportunities",
+        "x-payment-info": {
+          "protocols": ["x402"],
+          "pricingMode": "fixed",
+          "price": "0.05",
+          "currency": "USD"
+        },
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "request": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Opportunity analysis returned"
+          },
+          "402": {
+            "description": "USDC payment required via x402"
+          }
+        }
+      }
+    }
+  }
+}
