@@ -211,7 +211,10 @@ export function createGateway(
 			methods.add("GET");
 			methods.add("HEAD");
 		}
-		if (openapiPayload && pathname === "/.well-known/openapi.json") {
+		if (
+  openapiPayload &&
+  (pathname === "/.well-known/openapi.json" || pathname === "/openapi.json")
+) {
 			methods.add("GET");
 			methods.add("HEAD");
 		}
@@ -429,7 +432,7 @@ export function createGateway(
 			}
 
 			// OpenAPI spec export
-			if (openapiPayload && url.pathname === "/.well-known/openapi.json") {
+			if (openapiPayload && (url.pathname === "/.well-known/openapi.json" || url.pathname === "/openapi.json")) {
 				return finish(
 					RESERVED_ROUTE_LABELS.openapi,
 					new Response(openapiPayload, {
