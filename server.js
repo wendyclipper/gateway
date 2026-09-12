@@ -22,7 +22,10 @@ if (!MAKE_WEBHOOK_URL) {
 
 app.use(express.json());
 
-const facilitator = createCdpFacilitatorClient();
+const facilitator = createCdpFacilitatorClient({
+  apiKeyId: process.env.CDP_API_KEY_ID,
+  apiKeySecret: process.env.CDP_API_KEY_SECRET
+});
 
 const server = new x402ResourceServer(facilitator)
   .register("eip155:8453", new ExactEvmScheme());
