@@ -151,6 +151,7 @@ export function buildOpenAPISpec(config: TollboothConfig): OpenAPISpec {
 		const extensions: Record<string, unknown> = {
 			"x-x402-price": price,
 			"x-x402-accepts": acceptsInfo,
+			"x-payment-info": { protocols: ["x402"], pricingMode: "fixed", price: "0.05", currency: "USD" },
 		};
 
 		if (route.type === "token-based") {
