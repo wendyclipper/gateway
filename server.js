@@ -113,7 +113,13 @@ x402
 Each request returns a commercially analyzed EU procurement opportunity including opportunity score, category, buyer, country, contract value, deadline, source, summary and commercial relevance.`
   );
 });
-
+app.get("/test", (_req, res) => {
+  res.type("html").send(`
+    <form method="POST" action="/opportunities">
+      <button type="submit">Test POST /opportunities</button>
+    </form>
+  `);
+});
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Listening on port ${PORT}`);
   console.log(`Receiving payments at ${PAY_TO}`);
