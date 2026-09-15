@@ -6,6 +6,11 @@ import {
 } from "@x402/express";
 import { createCdpFacilitatorClient } from "@coinbase/cdp-sdk/x402";
 
+import {
+  bazaarResourceServerExtension,
+  declareDiscoveryExtension
+} from "@x402/extensions/bazaar";
+
 const app = express();
 const PORT = Number(process.env.PORT || 3000);
 
@@ -28,7 +33,8 @@ const facilitator = createCdpFacilitatorClient({
 });
 
 const server = new x402ResourceServer(facilitator)
-  .register("eip155:8453", new ExactEvmScheme());
+  .register("eip155:8453", new ExactEvmScheme())
+  .registerExtension(bazaarResourceServerExtension);
 
 app.use(
   paymentMiddleware(
@@ -42,7 +48,18 @@ app.use(
             payTo: PAY_TO
           }
         ],
-        description: "EU Opportunity Engine"
+        description: "EU Opportunity Engine",
+        mimeType: "text/plain",
+       extensions: {
+  ...declareDiscoveryExtension({
+    bodyType: "json",
+    input: {
+      type: "object",
+      properties: {},
+      additionalProperties: true
+    }
+  })
+}
       }
     },
     server
