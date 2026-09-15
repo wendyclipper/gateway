@@ -76,7 +76,25 @@ app.post("/opportunities", async (req, res) => {
 });
 
 app.get("/", (_req, res) => {
-  res.send("EU Opportunity Engine x402 gateway is running");
+  res.type("text/plain").send(
+`EU Opportunity Engine
+
+AI-analyzed EU procurement opportunities from TED (Tenders Electronic Daily).
+
+Paid API endpoint:
+POST /opportunities
+
+Price:
+$0.05 USDC per request
+
+Network:
+Base
+
+Payment:
+x402
+
+Each request returns a commercially analyzed EU procurement opportunity including opportunity score, category, buyer, country, contract value, deadline, source, summary and commercial relevance.`
+  );
 });
 
 app.listen(PORT, "0.0.0.0", () => {
