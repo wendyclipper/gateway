@@ -53,7 +53,7 @@ app.use(
        extensions: {
   ...declareDiscoveryExtension({
     bodyType: "json",
-    input: {
+inputSchema: {
       type: "object",
       properties: {},
       additionalProperties: true
