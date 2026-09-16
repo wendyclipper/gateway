@@ -12,6 +12,7 @@ import {
 } from "@x402/extensions/bazaar";
 
 const app = express();
+app.set("trust proxy", 1);
 const PORT = Number(process.env.PORT || 3000);
 
 const PAY_TO = process.env.PAY_TO_ADDRESS;
