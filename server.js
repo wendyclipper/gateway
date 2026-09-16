@@ -39,7 +39,7 @@ const server = new x402ResourceServer(facilitator)
 app.use(
   paymentMiddleware(
     {
-      "POST https://gateway-production-1a96.up.railway.app/opportunities": {
+      "POST /opportunities": {
         accepts: [
           {
             scheme: "exact",
