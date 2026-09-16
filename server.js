@@ -67,6 +67,8 @@ inputSchema: {
 );
 
 app.post("/opportunities", async (req, res) => {
+  console.log("PAID OPPORTUNITY REQUEST", new Date().toISOString());
+  
   try {
     const response = await fetch(MAKE_WEBHOOK_URL, {
       method: "POST",
