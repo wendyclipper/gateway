@@ -49,7 +49,7 @@ app.use(
             payTo: PAY_TO
           }
         ],
-        description: "EU Opportunity Engine",
+        description: "AI-analyzed EU public procurement opportunities from TED for companies seeking new contracts, tenders and commercial opportunities across Europe",
         mimeType: "text/plain",
        extensions: {
   ...declareDiscoveryExtension({
